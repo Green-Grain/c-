@@ -34,7 +34,8 @@ void  combinateWord(int digitNth, int digitMax, char* p_result, ofstream& output
 
 int main() {
   int digit = 0;
-  printf("桁数を入力して下さい：");
+  printf("桁数を入力して下さい(7桁まで推奨。8桁以上は処理負荷が高いです)\n");
+  printf(">");
   scanf("%d", &digit);
 
   char* p_result = new char[digit];
