@@ -37,6 +37,7 @@ int main() {
   scanf("%d", &digit);
 
   char* p_result = new char[digit];
+  if (nullptr == p_result)  return -1;
   memset(p_result, 0, sizeof(char) * digit);
   string_list resultList;
   combinateWord(digit, digit, p_result, &resultList);
@@ -48,6 +49,10 @@ int main() {
     outputFile << itr->c_str();
   }
   outputFile.close();
+  if (nullptr != p_result) {
+    delete[] p_result;
+    p_result = nullptr;
+  } 
 
   return 0;
 }
