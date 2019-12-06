@@ -1,14 +1,18 @@
 #include  "CombinationWord.h"
+#include  <string>
 
-bool  CombinationWord::Initialize(char* pCandidateChar, int candidateCharNum) {
+bool  CombinationWord::Initialize(const char* pCandidateChar, int candidateCharNum, bool isFileOutput) {
   if (nullptr == pCandidateChar)  return false;
 
   m_pCandidateChar = new char[candidateCharNum];
   if (nullptr == m_pCandidateChar) return false;
 
-  m_candidateCharNum = candidateCharNum;
   memset(m_pCandidateChar, 0, sizeof(char) * candidateCharNum);
+  strncpy(m_pCandidateChar, pCandidateChar, candidateCharNum);
+  m_candidateCharNum = candidateCharNum;
   m_outputFile.open(OUTPUT_FILE_NAME);
+  m_isFileOutput = isFileOutput;
+
   return true;
 }
 

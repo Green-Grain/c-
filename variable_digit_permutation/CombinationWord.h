@@ -32,8 +32,9 @@ public:
   * @brief 初期化
   * @param pCandidateChar     [in]  候補文字群
   * @param candidateCharNum   [in]  候補の文字群の数
+  * @param isFileOutput       [in]  ファイル出力する／しない
   */
-  bool  Initialize(char* pCandidateChar, int candidateCharNum);
+  bool  Initialize(const char* pCandidateChar, int candidateCharNum, bool isFileOutput);
 
   /*!
   * @brief 文字組み合わせ
