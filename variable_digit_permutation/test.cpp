@@ -5,7 +5,8 @@
 using namespace std;
 
 const char words[] = "abcdefghij";
-const int wordNum  = (sizeof(words) / sizeof(words[0])) - 1;
+const int  wordNum  = (sizeof(words) / sizeof(words[0])) - 1;
+bool       g_isFileOutput = false;
 
 /*!
  * @brief 文字組み合わせ
@@ -27,16 +28,30 @@ void  combinateWord(int digitNth, int digitMax, char* p_result, ofstream& output
       string result(p_result);
       result += "\n";
       printf("%s", result.c_str());
-      outputFile << result.c_str();
+      if (true == g_isFileOutput) {
+        outputFile << result.c_str();
+      }
     }
   }
 }
 
 int main() {
   int digit = 0;
-  printf("桁数を入力して下さい(7桁まで推奨。8桁以上は処理負荷が高いです)\n");
+  printf("\"%s\"から順列(重複あり)を作成します。\n", words);
+  printf("桁数を入力して下さい(7桁まで)\n");
   printf(">");
   scanf("%d", &digit);
+  if ((0 >= digit) || (7 < digit)) {
+    printf("%d桁は未サポートです。終了します。\n", digit);
+    return -1;
+  }
+
+  char inputChar = 0;
+  printf("ファイルに出力しますか？(y/n)>");
+  scanf(" %c", &inputChar);
+  if ('y' == inputChar || 'Y' == inputChar) {
+    g_isFileOutput = true;
+  }
 
   char* p_result = new char[digit];
   if (nullptr == p_result)  return -1;
