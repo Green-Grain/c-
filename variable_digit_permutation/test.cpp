@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <iostream>
 #include "CombinationWord.h"
 using namespace std;
 
@@ -10,7 +11,8 @@ int main() {
   printf("\"%s\"から順列(重複あり)を作成します。\n", words);
   printf("桁数を入力して下さい(7桁まで)\n");
   printf(">");
-  scanf("%d", &digit);
+  // scanf("%d", &digit);
+  cin >> digit;
   if ((0 >= digit) || (7 < digit)) {
     printf("%d桁は未サポートです。終了します。\n", digit);
     return -1;
