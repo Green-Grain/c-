@@ -28,14 +28,7 @@ int main() {
 
   CombinationWord combination;
   combination.Initialize(words, wordNum, isFileOutput);
-
-  char* p_work = new char[digit];
-  if (nullptr == p_work)  return -1;
-  combination.GenerateCombination(digit, digit, p_work);
-  if (nullptr != p_work) {
-    delete[] p_work;
-    p_work = nullptr;
-  }
+  combination.GenerateCombination(digit, digit);
 
   return 0;
 }

@@ -11,6 +11,8 @@ protected:
   int         m_candidateCharNum; //!< 候補文字群の数
   bool        m_isFileOutput;     //!< ファイル出力する／しない
   ofstream    m_outputFile;       //!< ファイル出力ストリーム
+  char*       m_pWorkBuffer;      //!< 作業用バッファ
+  int         m_workBufferSize;   //!< 作業用バッファサイズ[Byte]
 
 public:
   CombinationWord() 
@@ -18,6 +20,8 @@ public:
     , m_candidateCharNum(0)
     , m_isFileOutput(false)
     , m_outputFile()
+    , m_pWorkBuffer(nullptr)
+    , m_workBufferSize(0)
   {}
 
   ~CombinationWord() {
@@ -25,6 +29,12 @@ public:
       delete[] m_pCandidateChar;
       m_pCandidateChar = nullptr;
     }
+    m_candidateCharNum = 0;
+    if (nullptr != m_pWorkBuffer) {
+      delete[] m_pWorkBuffer;
+      m_pWorkBuffer = nullptr;
+    }
+    m_workBufferSize = 0;
     m_outputFile.close();
   }
 
@@ -40,9 +50,17 @@ public:
   * @brief 文字組み合わせ
   * @param digitNth    [in]  何桁目
   * @param digitMax    [in]  最大桁数
+  */
+  void  GenerateCombination(int digitNth, int digitMax);
+
+protected:
+  /*!
+  * @brief 文字組み合わせ
+  * @param digitNth    [in]  何桁目
+  * @param digitMax    [in]  最大桁数
   * @param p_result    [in/out]  組み合わせ後の文字列
   */
-  void  GenerateCombination(int digitNth, int digitMax, char* p_result);
+  void  _GenerateCombination(int digitNth, int digitMax, char* p_result);
 
 };
 #endif
