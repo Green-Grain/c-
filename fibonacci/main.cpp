@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include <iostream>
 #include "FibonacciSequence.h"
 using namespace std;
